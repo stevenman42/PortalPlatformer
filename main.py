@@ -1,5 +1,7 @@
 import pygame, sys
 
+from interaction import *
+
 pygame.init()
 
 screen = pygame.display.set_mode((960,640))
@@ -18,38 +20,33 @@ clock = pygame.time.Clock()
 
 while True:
 
-	for event in pygame.event.get():
+	interaction = Interaction()
 
-		if event.type == pygame.QUIT:
+	if interaction == 'up':
 
-			pygame.quit()
-			sys.exit()
+		player.yVel = -5
 
-		elif event.type == pygame.KEYDOWN:
+	elif interaction == 'down':
 
-			if event.key == pygame.K_ESCAPE:
+		player.yVel = 5
 
-				pygame.quit()
-				sys.exit()
+	elif interaction == 'left':
 
-			elif event.key == pygame.K_UP:
+		player.xVel = -5
 
-				print("up")
+	elif interaction == 'right':
 
-			elif event.key == pygame.K_DOWN:
-
-				print("down")
-
-			elif event.key == pygame.K_LEFT:
-
-				print("left")
-
-			elif event.key == pygame.K_RIGHT:
-
-				print("right")
+		player.xVel = 5
 
 
 
+
+
+
+	# Game Logic or totes whatevs #
+
+	player.xPos += player.xVel
+	player.yPos += player.yVel
 
 
 	# Drawing #
