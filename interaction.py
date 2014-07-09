@@ -31,3 +31,4 @@ def Interaction():
 			elif event.key == pygame.K_RIGHT:
 
 				return("right")
+
