@@ -26,7 +26,7 @@ BLUE = (0, 186, 255)
 									#  [player, player] is just a placeholder in these three thingies
 CanShoot = True					#	  /
 CanShootBullet = 'True'
-gravity = 1
+gravity = .5
 								#	 /
 # Lists of things #				#	/
 
@@ -40,16 +40,16 @@ while True:
 	interaction = Interaction()
 
 	if interaction == 'up':
-		player.yVel = -5
+		player.yPos += -5
 
 	elif interaction == 'down':
-		player.yVel = 5
+		player.yPos += 5
 
 	elif interaction == 'left':
-		player.xVel = -5
+		player.xPos += -5
 
 	elif interaction == 'right':
-		player.xVel = 5
+		player.xPos += 5
 
 	elif interaction == 'space':
 
@@ -128,9 +128,6 @@ while True:
 
 		CanShootOrange = True
 
-
-
-
 	player.xPos += player.xVel
 	player.yPos += player.yVel
 
@@ -141,9 +138,10 @@ while True:
 
 	for portal in OtherPortalList:
 
+		portal.rect = pygame.Rect(portal.xPos, portal.yPos, portal.width, portal.height)
+
 		for bullet in BulletList:
 
-			portal.rect = pygame.Rect(portal.xPos, portal.yPos, portal.width, portal.height)
 			bullet.rect = pygame.Rect(bullet.xPos, bullet.yPos, bullet.width, bullet.height)
 
 			if portal.rect.contains(bullet.rect):
@@ -159,9 +157,14 @@ while True:
 					bullet.yPos = BluePortal.yPos + 8
 
 			bullet.yVel += gravity
+			if bullet.yPos < 0 or bullet.yPos > HEIGHT:
+				BulletList.remove(bullet)
+				EverythingList.remove(bullet)
+			if bullet.xPos < 0 or bullet.xPos > WIDTH:
+				BulletList.remove(bullet)
+				EverythingList.remove(bullet)
 
-		
-
+	
 	# Drawing #
 
 	screen.fill((0,0,0))
