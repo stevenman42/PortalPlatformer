@@ -32,3 +32,39 @@ def Interaction():
 
 				return("right")
 
+			elif event.key == pygame.K_SPACE:
+
+				return("space")
+
+		elif event.type == pygame.KEYUP:
+
+			pass
+
+
+def SpaceInteraction(CanShootBullet):
+
+	for event in pygame.event.get():
+
+		if event.type == pygame.KEYDOWN:
+
+			if event.key == pygame.K_SPACE:
+
+				if CanShootBullet == 'True':
+
+					CanShootBullet = 'False'
+				
+					return "False"
+
+
+		elif event.type == pygame.KEYUP:
+
+			if event.key == pygame.K_SPACE:
+
+				if CanShootBullet == 'False':
+
+					CanShootBullet = 'True'
+
+					return "True"
+
+
+

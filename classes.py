@@ -30,6 +30,9 @@ class Tile(object):
 
 		self.color = color
 
+		self.xVel = 0
+		self.yVel = 0
+
 	def render(self, screen):
 
 		pygame.draw.rect(screen, (self.color), (self.xPos, self.yPos, self.width, self.height))
@@ -50,4 +53,5 @@ class Portal(Tile):
 		self.yVel = 0
 
 		Tile.__init__(self, xPos, yPos, width, height, self.color)
+
 
